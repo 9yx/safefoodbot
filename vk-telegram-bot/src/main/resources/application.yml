@@ -1,0 +1,13 @@
+app:
+  timeZone: "Asia/Yekaterinburg"
+  vk:
+    accessToken: "684aee0cc7f0287fb9a8ca3da90ebe8062a6d5acd273c093f0f685ff79a62533fce75a136e1d4d5a26b35"
+    groupId: 192583978
+    wait: 15
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/data_bot
+    username: postgres
+    password: secret
+  main:
+    allow-bean-definition-overriding: true
