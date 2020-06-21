@@ -5,6 +5,7 @@ from pymystem3 import Mystem
 stop_words = stopwords.words('russian')
 mystem = Mystem()
 
+#  Предобработка файлов для тренировки модели
 
 def preprocess_text(text):
     tokens = mystem.lemmatize(text.lower()

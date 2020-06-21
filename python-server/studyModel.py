@@ -2,6 +2,8 @@ from pprint import pprint as print
 from gensim.models.fasttext import FastText as FT_gensim
 from gensim.test.utils import datapath
 
+# тренировка модели
+
 corpus_file = datapath('/home/runx/fudsharingProcessed.cor')
 model = FT_gensim(size=100)
 

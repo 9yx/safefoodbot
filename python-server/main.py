@@ -15,7 +15,6 @@ app = Flask(__name__)
 mystem = Mystem()
 stop_words = stopwords.words('russian')
 
-
 def preprocess_text(text):
     tokens = mystem.lemmatize(text.lower()
                               .replace("#", " ")
@@ -32,7 +31,7 @@ def preprocess_text(text):
 
     return text
 
-
+# Получение информации о адресе используя slovnet и geocode-maps.yandex.ru
 @app.route("/address", methods=['POST'])
 def spb():
     data = request.json
@@ -47,7 +46,7 @@ def spb():
 
     if join != '':
         r = requests.get(
-            'https://geocode-maps.yandex.ru/1.x/?apikey=59a55828-0cd7-468b-a92c-c702d2937654&format=json&geocode=' + join)
+            'https://geocode-maps.yandex.ru/1.x/?apikey=59a55828-0cd7-468b-a92c&format=json&geocode=' + join)
         data = json.loads(r.text)
 
         maxCossim = 0
@@ -84,6 +83,7 @@ def spb():
     return result
 
 
+# Получение меры сходства doc1 и doc2 используя обученную модель
 @app.route("/softcossim", methods=['POST'])
 def softcossimCall():
     data = request.json
