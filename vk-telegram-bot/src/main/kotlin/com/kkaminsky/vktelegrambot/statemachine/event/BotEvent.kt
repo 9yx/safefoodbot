@@ -9,5 +9,6 @@ enum class BotEvent {
     UPDATE_TOPICS,
     GET_SOME_TEXT,
     GET_CRITIC,
-    RETURNED
+    RETURNED,
+    NEEDED_MAP
 }

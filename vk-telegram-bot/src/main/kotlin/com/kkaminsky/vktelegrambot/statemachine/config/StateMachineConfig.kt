@@ -5,7 +5,6 @@ import com.kkaminsky.vktelegrambot.entity.DataEntity
 import com.kkaminsky.vktelegrambot.repository.DataRepository
 import com.kkaminsky.vktelegrambot.service.DistanceCounter
 import com.kkaminsky.vktelegrambot.service.MessageOutService
-import com.kkaminsky.vktelegrambot.service.MessageOutServiceImpl
 import com.kkaminsky.vktelegrambot.statemachine.event.BotEvent
 import com.kkaminsky.vktelegrambot.statemachine.listener.BotStateMachineListener
 import com.kkaminsky.vktelegrambot.statemachine.state.BotState
@@ -101,6 +100,14 @@ class StateMachineConfig(
                 .withExternal()
                 .source(BotState.SHOWING_SEARCH)
                 .target(BotState.SENDING_GEO)
+                .event(BotEvent.NEEDED_MAP)
+                .action(showMap())
+                .action(youReturnedNotification())
+                .action(answerForGeo())
+                .and()
+                .withExternal()
+                .source(BotState.SHOWING_SEARCH)
+                .target(BotState.SENDING_GEO)
                 .event(BotEvent.RETURNED)
                 .action(youReturnedNotification())
                 .action(answerForGeo())
@@ -185,6 +192,19 @@ class StateMachineConfig(
         }
     }
 
+    @Bean
+    fun showMap(): Action<BotState,BotEvent>{
+        return Action {
+            val userId = it.extendedState.get("USER_ID",String::class.java)
+            val mapUrl = it.extendedState.get("MAP_PATH",String::class.java)
+            vkMessageServiceImpl.newMessageToUser(MessageOutDto(
+                    userId = userId,
+                    messageId = "sdfs",
+                    text = mapUrl,
+                    buttons = listOf()
+            ))
+        }
+    }
 
     @Bean
     fun showRecultOfSearch(): Action<BotState,BotEvent>{
@@ -211,6 +231,8 @@ class StateMachineConfig(
 
             dataEntities.sortedBy { it.second }.take(5)
 
+            var str: String = ""
+            var firstCoords = ""
             for (e in dataEntities.map { it.first }){
                 vkMessageServiceImpl.newMessageToUser(MessageOutDto(
                         userId = userId,
@@ -220,8 +242,13 @@ class StateMachineConfig(
                         attachmnet = "wall"+e.groupId+"_"+e.postId,
                         oneTimeButtons = listOf("Ок","Не ок")
                 ))
+                str += e.lng+"," + e.lat + "~"
+                firstCoords = e.lng + "," + e.lat
             }
-
+            if (str!=""){
+                str.substring(0, str.count()- 1);
+            }
+            it.extendedState.variables["MAP_PATH"] = "https://yandex.ru/maps/?ll=$firstCoords&pt=$str&z=12&l=map"
             vkMessageServiceImpl.newMessageToUser(MessageOutDto(
                     userId = userId,
                     messageId = "sdfs",

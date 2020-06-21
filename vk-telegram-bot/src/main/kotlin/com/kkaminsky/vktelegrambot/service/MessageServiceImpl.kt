@@ -52,6 +52,9 @@ class MessageServiceImpl(
             sm.extendedState.variables["LNG"] = dto.geoData.coordinates.longitude.toString()
             sm.sendEvent(BotEvent.SENT_GEO)
         }
+        if(dto.messageText == "Отобразить все на карте"){
+            sm.sendEvent(BotEvent.NEEDED_MAP)
+        }
         if(dto.messageText in listOf("Хлеб","Картошка","Чай")){
             when (dto.messageText) {
                 "Хлеб" -> {
