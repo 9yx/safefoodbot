@@ -1,5 +1,8 @@
 package com.kkaminsky.vktelegrambot.statemachine.event
 
+/**
+ * События бота
+ */
 enum class BotEvent {
     START_TYPE_SEARCH,
     BOT_OKED,

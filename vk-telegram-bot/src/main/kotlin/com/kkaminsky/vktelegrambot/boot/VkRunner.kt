@@ -8,6 +8,9 @@ import org.springframework.stereotype.Component
 import java.util.*
 
 
+/**
+ * Класс для запуска вк бота
+ */
 @Component
 class VkRunner(
         private val bot: VkBot

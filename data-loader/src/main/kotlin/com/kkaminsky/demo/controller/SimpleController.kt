@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.client.RestTemplate
 import javax.transaction.Transactional
 
+/**
+ * Конечные точки для авторизации и получения новых постов
+ */
 @RestController
 class SimpleController(
         private val dataRepository: DataRepository
@@ -60,7 +63,7 @@ class SimpleController(
                 }
                 val dataEntity = DataEntity()
                 val restTemplate = RestTemplate()
-                val listOfCategosries = listOf("картошка","чай","хлеб").map {categ->
+                val listOfCategosries = listOf("cat1","cat2","cat3").map {categ->
                     val body = HttpEntity(SoftcossimDto(
                             doc1 = wallPost.text,
                             doc2 = categ

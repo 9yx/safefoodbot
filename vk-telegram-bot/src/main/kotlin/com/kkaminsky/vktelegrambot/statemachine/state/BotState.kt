@@ -1,5 +1,8 @@
 package com.kkaminsky.vktelegrambot.statemachine.state
 
+/**
+ * Состояния бота
+ */
 enum class BotState(val text: String) {
     UNDEFINED(""),
     GREETING("Начать"),

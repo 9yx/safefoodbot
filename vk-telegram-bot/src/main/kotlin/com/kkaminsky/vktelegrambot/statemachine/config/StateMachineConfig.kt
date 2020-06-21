@@ -23,7 +23,9 @@ import org.springframework.statemachine.persist.DefaultStateMachinePersister
 import org.springframework.statemachine.persist.StateMachinePersister
 import java.util.*
 
-
+/**
+ * Класс для конфигурации конченого автомата. Здесь описаны все переходы между состояниями
+ */
 @Configuration
 @EnableStateMachineFactory
 class StateMachineConfig(
@@ -55,12 +57,12 @@ class StateMachineConfig(
                 .source(BotState.UNDEFINED)
                 .target(BotState.GREETING)
                 .event(BotEvent.GET_SOME_TEXT)
-                .action(showZadatButton())
+                .action(showZadatButton())//Получили первое сообщение
                 .and()
                 .withExternal()
                 .source(BotState.SHOWING_SEARCH)
                 .target(BotState.SENDING_GEO)
-                .event(BotEvent.BOT_OKED)
+                .event(BotEvent.BOT_OKED)//Получили ок
                 .action(actionForOk())
                 .action(youReturnedNotification())
                 .action(answerForGeo())
@@ -68,7 +70,7 @@ class StateMachineConfig(
                 .withExternal()
                 .source(BotState.SHOWING_SEARCH)
                 .event(BotEvent.BOT_DIDNT_OK)
-                .target(BotState.BAD_CHOICE)
+                .target(BotState.BAD_CHOICE)//Получили Не ок
                 .action(actionForDidntOk())
                 .and()
                 .withExternal()

@@ -6,6 +6,9 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository
 
+/**
+ * Интерфейс для работы с базаой данных, где хранятся посты
+ */
 interface DataRepository:JpaRepository<DataEntity,Long> {
 
     @Query("""

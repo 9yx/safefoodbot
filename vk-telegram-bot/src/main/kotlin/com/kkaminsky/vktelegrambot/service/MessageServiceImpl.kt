@@ -8,6 +8,9 @@ import org.springframework.statemachine.persist.StateMachinePersister
 import org.springframework.stereotype.Service
 
 
+/**
+ * Класс для обработки сообщений от пользователя, используется конечный автомат - Spring State Machine
+ */
 @Service
 class MessageServiceImpl(
         private val persister: StateMachinePersister<BotState, BotEvent, String>,

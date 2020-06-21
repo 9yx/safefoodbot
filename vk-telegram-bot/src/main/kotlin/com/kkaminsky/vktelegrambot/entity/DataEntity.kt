@@ -2,6 +2,11 @@ package com.kkaminsky.vktelegrambot.entity
 
 import javax.persistence.*
 
+
+
+/**
+ * Класс данных для постов, хранящихся в базе
+ */
 @Entity
 @Table(name = "data")
 class DataEntity {

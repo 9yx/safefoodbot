@@ -9,6 +9,9 @@ import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
 
+/**
+ * Класс конфигураций для бота
+ */
 @Configuration
 @EnableConfigurationProperties(VkApiConfig::class)
 class VkContext (
