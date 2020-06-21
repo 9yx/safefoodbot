@@ -1,5 +1,5 @@
 # safefoodbot
-Хакатон leadersofdigital.ru 20.06.2020, трек 
+Хакатон leadersofdigital.ru 20.06.2020, Кейс #4 | РАЭК+ТИАР
 
 Структура проекта:
 1) python-server - работа с моделями в python gensim(https://github.com/RaRe-Technologies/gensim) 
